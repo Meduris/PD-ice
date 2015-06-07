@@ -112,7 +112,12 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		
 		view = new GLSurfaceView( this );
 		view.setEGLContextClientVersion( 2 );
-		view.setEGLConfigChooser( false );
+		
+		// the game works on android even without these two lines, but to run it on an emulator,
+		// these two lines are necessary
+		view.setEGLConfigChooser( true );
+		view.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+		
 		view.setRenderer( this );
 		view.setOnTouchListener( this );
 		setContentView( view );
