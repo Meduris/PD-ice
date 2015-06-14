@@ -14,8 +14,9 @@ Things have to be fixed
 - [ ] reset all the other starting stats
 - [ ] on the floors 1 to 5 potion of mind vision disables the heros field of view, you can only see the small region around the enemys
 - [ ] also on the floors 1 to 5: the heros field of view is also disablen in the gardens, also what you see from the garden will be only updated if you exit the room, wait for the end of the gardens effect and then reenter the garden 
+-  [ ] test the app without preset openglconfig and look what is different
 
-See [my other branch](https://github.com/Sarius997/PD-ice/tree/first-version-without-cheats) for a version without cheats
+See [my other branch](https://github.com/Sarius997/PD-ice/tree/first-version-without-cheats) for the code without cheats
 ============
 
 Reverse landscape:
