@@ -162,9 +162,21 @@ public class SewerBossLevel extends RegularLevel {
 
         //TODO: not handling this through a painter is kinda iffy, separate into a painter if you use it again.
         //sticks the exit in the room entrance.
-        exit = roomEntrance.top * Level.WIDTH + (roomEntrance.left + roomEntrance.right) / 2;
-        map[exit] = Terrain.LOCKED_EXIT;
 		
+		// TODO has to be changed for other positions of the stairs
+        exit = roomEntrance.top * Level.WIDTH + (roomEntrance.left + 1);
+        map[exit] = Terrain.LOCKED_EXIT;
+        
+        // TODO do not modify here, has to be modifyed in BoosExitPainter.java if it should be changed for all bosslevels
+       // TODO entrance can be modifyed in EntrancePainter.java
+        /*
+        entrance = roomEntrance.top * Level.WIDTH + (roomEntrance.right);
+        map[entrance] = Terrain.ENTRANCE;
+        */
+        
+        // TODO test this!!
+      //  paintDoors(roomEntrance);
+        		
 		paintWater();
 		paintGrass();
 		
@@ -184,9 +196,12 @@ public class SewerBossLevel extends RegularLevel {
 		int start = roomExit.top * WIDTH + roomExit.left + 1;
 		int end = start + roomExit.width() - 1;
 		for (int i=start; i < end; i++) {
-			if (i != exit) {
+			if (i != exit && (i + WIDTH) != entrance) {
 				map[i] = Terrain.WALL_DECO;
 				map[i + WIDTH] = Terrain.WATER;
+			} else if((i + WIDTH) == entrance){
+				map[i] = Terrain.WALL;
+				map[i + WIDTH] = Terrain.ENTRANCE;
 			} else {
 				map[i + WIDTH] = Terrain.EMPTY;
 			}

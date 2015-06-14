@@ -17,30 +17,28 @@
  */
 package com.shatteredpixel.shatteredicepixeldungeon.items;
 
-import com.shatteredpixel.shatteredicepixeldungeon.ResultDescriptions;
-import com.shatteredpixel.shatteredicepixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.shatteredicepixeldungeon.sprites.CharSprite;
-import com.shatteredpixel.shatteredicepixeldungeon.sprites.ItemSprite;
-import com.shatteredpixel.shatteredicepixeldungeon.utils.GLog;
-import com.shatteredpixel.shatteredicepixeldungeon.utils.Utils;
-import com.watabou.noosa.audio.Sample;
+import java.util.ArrayList;
+
 import com.shatteredpixel.shatteredicepixeldungeon.Assets;
 import com.shatteredpixel.shatteredicepixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredicepixeldungeon.ResultDescriptions;
 import com.shatteredpixel.shatteredicepixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredicepixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredicepixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredicepixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredicepixeldungeon.effects.particles.BlastParticle;
 import com.shatteredpixel.shatteredicepixeldungeon.effects.particles.SmokeParticle;
 import com.shatteredpixel.shatteredicepixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredicepixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredicepixeldungeon.scenes.GameScene;
+import com.shatteredpixel.shatteredicepixeldungeon.sprites.CharSprite;
+import com.shatteredpixel.shatteredicepixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredicepixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.shatteredicepixeldungeon.utils.GLog;
+import com.shatteredpixel.shatteredicepixeldungeon.utils.Utils;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class Bomb extends Item {
 	
@@ -87,7 +85,11 @@ public class Bomb extends Item {
             Actor.addDelayed(fuse = new Fuse().ignite(this), 2);
         }
         if (Actor.findChar( cell ) != null && !(Actor.findChar( cell ) instanceof Hero) ){
-            ArrayList<Integer> candidates = new ArrayList<>();
+        	
+        	// original:
+        	// ArrayList<Integer> candidates = new ArrayList<>();
+
+            ArrayList<Integer> candidates = new ArrayList<Integer>();
             for (int i : Level.NEIGHBOURS8)
                 if (Level.passable[cell + i])
                     candidates.add(cell + i);
@@ -147,7 +149,7 @@ public class Bomb extends Item {
 					}
 
 					if (ch == Dungeon.hero && !ch.isAlive())
-						//constant is used here in the rare instance a player is killed by a double bomb.
+						// constant is used here in the rare instance a player is killed by a double bomb.
 						Dungeon.fail(Utils.format(ResultDescriptions.ITEM, "bomb"));
 				}
 			}

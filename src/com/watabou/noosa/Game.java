@@ -22,15 +22,6 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import com.watabou.glscripts.Script;
-import com.watabou.gltextures.TextureCache;
-import com.watabou.input.Keys;
-import com.watabou.input.Touchscreen;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.BitmapCache;
-import com.watabou.utils.SystemTime;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -44,6 +35,15 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
+
+import com.watabou.glscripts.Script;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.input.Keys;
+import com.watabou.input.Touchscreen;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.BitmapCache;
+import com.watabou.utils.SystemTime;
 
 public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
 
@@ -110,17 +110,16 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		
 		setVolumeControlStream( AudioManager.STREAM_MUSIC );
 		
-		view = new GLSurfaceView( this );
-		view.setEGLContextClientVersion( 2 );
-		
-		// the game works on android even without these two lines, but to run it on an emulator,
-		// these two lines are necessary
-		view.setEGLConfigChooser( true );
+		view = new GLSurfaceView(this);
+		view.setEGLContextClientVersion(2);
+
+		// should be set true and is better to have a base config
+		view.setEGLConfigChooser(true);
 		view.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-		
-		view.setRenderer( this );
-		view.setOnTouchListener( this );
-		setContentView( view );
+
+		view.setRenderer(this);
+		view.setOnTouchListener(this);
+		setContentView(view);
 	}
 	
 	@Override

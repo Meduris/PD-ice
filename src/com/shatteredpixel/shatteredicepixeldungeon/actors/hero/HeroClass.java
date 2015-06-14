@@ -40,161 +40,163 @@ import com.watabou.utils.Bundle;
 
 public enum HeroClass {
 
-	WARRIOR( "warrior" ), MAGE( "mage" ), ROGUE( "rogue" ), HUNTRESS( "huntress" );
-	
+	WARRIOR("warrior"), MAGE("mage"), ROGUE("rogue"), HUNTRESS("huntress");
+
 	private String title;
-	
-	private HeroClass( String title ) {
+
+	private HeroClass(String title) {
 		this.title = title;
 	}
-	
+
 	public static final String[] WAR_PERKS = {
-		"Warriors start with 11 points of Strength.",
-		"Warriors start with a unique short sword. This sword can be later \"reforged\" to upgrade another melee weapon.",
-		"Warriors are less proficient with missile weapons.",
-		"Any piece of food restores some health when eaten.",
-		"Potions of Strength are identified from the beginning.",
-	};
-	
+			"Warriors start with 11 points of Strength.",
+			"Warriors start with a unique short sword. This sword can be later \"reforged\" to upgrade another melee weapon.",
+			"Warriors are less proficient with missile weapons.",
+			"Any piece of food restores some health when eaten.",
+			"Potions of Strength are identified from the beginning.", };
+
 	public static final String[] MAG_PERKS = {
-		"Mages start with a unique Wand of Magic Missile. This wand can be later \"disenchanted\" to upgrade another wand.",
-		"Mages recharge their wands faster.",
-		"When eaten, any piece of food restores 1 charge for all wands in the inventory.",
-		"Mages can use wands as a melee weapon.",
-		"Scrolls of Identify are identified from the beginning."
-	};
-	
+			"Mages start with a unique Wand of Magic Missile. This wand can be later \"disenchanted\" to upgrade another wand.",
+			"Mages recharge their wands faster.",
+			"When eaten, any piece of food restores 1 charge for all wands in the inventory.",
+			"Mages can use wands as a melee weapon.",
+			"Scrolls of Identify are identified from the beginning." };
+
 	public static final String[] ROG_PERKS = {
-		"Rogues start with a unique Cloak of Shadows.",
-		"Rogues identify a type of a ring on equipping it.",
-		"Rogues are proficient with light armor, dodging better while wearing one.",
-		"Rogues are proficient in detecting hidden doors and traps.",
-		"Rogues can go without food longer.",
-		"Scrolls of Magic Mapping are identified from the beginning."
-	};
-	
+			"Rogues start with a unique Cloak of Shadows.",
+			"Rogues identify a type of a ring on equipping it.",
+			"Rogues are proficient with light armor, dodging better while wearing one.",
+			"Rogues are proficient in detecting hidden doors and traps.",
+			"Rogues can go without food longer.",
+			"Scrolls of Magic Mapping are identified from the beginning." };
+
 	public static final String[] HUN_PERKS = {
-		"Huntresses start with 15 points of Health.",
-		"Huntresses start with a unique upgradeable boomerang.",
-		"Huntresses are proficient with missile weapons, getting bonus damage from excess strength.",
-		"Huntresses are able to recover a single used missile weapon from each enemy.",
-		"Huntresses gain more health from dewdrops.",
-		"Huntresses sense neighbouring monsters even if they are hidden behind obstacles.",
-		"Potions of Mind Vision are identified from the beginning."
-	};
+			"Huntresses start with 15 points of Health.",
+			"Huntresses start with a unique upgradeable boomerang.",
+			"Huntresses are proficient with missile weapons, getting bonus damage from excess strength.",
+			"Huntresses are able to recover a single used missile weapon from each enemy.",
+			"Huntresses gain more health from dewdrops.",
+			"Huntresses sense neighbouring monsters even if they are hidden behind obstacles.",
+			"Potions of Mind Vision are identified from the beginning." };
 
-    public void initHero( Hero hero ) {
+	public void initHero(Hero hero) {
 
-        hero.heroClass = this;
+		hero.heroClass = this;
 
-        initCommon( hero );
+		initCommon(hero);
 
-        switch (this) {
-            case WARRIOR:
-                initWarrior( hero );
-                break;
+		switch (this) {
+		case WARRIOR:
+			initWarrior(hero);
+			break;
 
-            case MAGE:
-                initMage( hero );
-                break;
+		case MAGE:
+			initMage(hero);
+			break;
 
-            case ROGUE:
-                initRogue( hero );
-                break;
+		case ROGUE:
+			initRogue(hero);
+			break;
 
-            case HUNTRESS:
-                initHuntress( hero );
-                break;
-        }
+		case HUNTRESS:
+			initHuntress(hero);
+			break;
+		}
 
-        if (Badges.isUnlocked( masteryBadge() )) {
-            new TomeOfMastery().collect();
-        }
+		if (Badges.isUnlocked(masteryBadge())) {
+			new TomeOfMastery().collect();
+		}
 
-        hero.updateAwareness();
-    }
+		hero.updateAwareness();
+	}
 
-    private static void initCommon( Hero hero ) {
-        if (!Dungeon.isChallenged(Challenges.NO_ARMOR))
-            (hero.belongings.armor = new ClothArmor()).identify();
+	private static void initCommon(Hero hero) {
+		if (!Dungeon.isChallenged(Challenges.NO_ARMOR))
+			(hero.belongings.armor = new ClothArmor()).identify();
 
-        if (!Dungeon.isChallenged(Challenges.NO_FOOD))
-            new Food().identify().collect();
-    }
+		if (!Dungeon.isChallenged(Challenges.NO_FOOD))
+			new Food().identify().collect();
+	}
 
-    public Badges.Badge masteryBadge() {
-        switch (this) {
-            case WARRIOR:
-                return Badges.Badge.MASTERY_WARRIOR;
-            case MAGE:
-                return Badges.Badge.MASTERY_MAGE;
-            case ROGUE:
-                return Badges.Badge.MASTERY_ROGUE;
-            case HUNTRESS:
-                return Badges.Badge.MASTERY_HUNTRESS;
-        }
-        return null;
-    }
+	public Badges.Badge masteryBadge() {
+		switch (this) {
+		case WARRIOR:
+			return Badges.Badge.MASTERY_WARRIOR;
+		case MAGE:
+			return Badges.Badge.MASTERY_MAGE;
+		case ROGUE:
+			return Badges.Badge.MASTERY_ROGUE;
+		case HUNTRESS:
+			return Badges.Badge.MASTERY_HUNTRESS;
+		}
+		return null;
+	}
 
-    private static void initWarrior( Hero hero ) {
-        hero.STR = hero.STR + 1;
+	private static void initWarrior(Hero hero) {
+		hero.STR = hero.STR + 1;
 
-        (hero.belongings.weapon = new ShortSword()).identify();
-        Dart darts = new Dart( 8 );
-        darts.identify().collect();
+		(hero.belongings.weapon = new ShortSword()).identify();
+		Dart darts = new Dart(8);
+		darts.identify().collect();
 
-        Dungeon.quickslot.setSlot(0, darts);
+		Dungeon.quickslot.setSlot(0, darts);
 
-        new PotionOfStrength().setKnown();
-    }
+		new PotionOfStrength().setKnown();
+	}
 
-    private static void initMage( Hero hero ) {
-        (hero.belongings.weapon = new Knuckles()).identify();
+	private static void initMage(Hero hero) {
+		(hero.belongings.weapon = new Knuckles()).identify();
 
-        WandOfMagicMissile wand = new WandOfMagicMissile();
-        wand.identify().collect();
+		WandOfMagicMissile wand = new WandOfMagicMissile();
+		wand.identify().collect();
 
-        Dungeon.quickslot.setSlot(0, wand);
+		Dungeon.quickslot.setSlot(0, wand);
 
-        new ScrollOfIdentify().setKnown();
-    }
+		// TODO should be removed
+		PotionOfMindVision mind = new PotionOfMindVision();
+		mind.identify();
+		mind.quantity(20);
+		mind.collect();
 
-    private static void initRogue( Hero hero ) {
-        (hero.belongings.weapon = new Dagger()).identify();
+		new ScrollOfIdentify().setKnown();
+	}
 
-        CloakOfShadows cloak = new CloakOfShadows();
-        (hero.belongings.misc1 = cloak).identify();
-        hero.belongings.misc1.activate( hero );
+	private static void initRogue(Hero hero) {
+		(hero.belongings.weapon = new Dagger()).identify();
 
-        Dart darts = new Dart( 8 );
-        darts.identify().collect();
+		CloakOfShadows cloak = new CloakOfShadows();
+		(hero.belongings.misc1 = cloak).identify();
+		hero.belongings.misc1.activate(hero);
 
-        Dungeon.quickslot.setSlot(0, cloak);
-        if (ShatteredPixelDungeon.quickSlots() > 1)
-            Dungeon.quickslot.setSlot(1, darts);
+		Dart darts = new Dart(8);
+		darts.identify().collect();
 
-        new ScrollOfMagicMapping().setKnown();
-    }
+		Dungeon.quickslot.setSlot(0, cloak);
+		if (ShatteredPixelDungeon.quickSlots() > 1)
+			Dungeon.quickslot.setSlot(1, darts);
 
-    private static void initHuntress( Hero hero ) {
+		new ScrollOfMagicMapping().setKnown();
+	}
 
-        hero.HP = (hero.HT -= 5);
+	private static void initHuntress(Hero hero) {
 
-        (hero.belongings.weapon = new Dagger()).identify();
-        Boomerang boomerang = new Boomerang();
-        boomerang.identify().collect();
+		hero.HP = (hero.HT -= 5);
 
-        Dungeon.quickslot.setSlot(0, boomerang);
+		(hero.belongings.weapon = new Dagger()).identify();
+		Boomerang boomerang = new Boomerang();
+		boomerang.identify().collect();
 
-	    new PotionOfMindVision().setKnown();
-    }
-	
+		Dungeon.quickslot.setSlot(0, boomerang);
+
+		new PotionOfMindVision().setKnown();
+	}
+
 	public String title() {
 		return title;
 	}
-	
+
 	public String spritesheet() {
-		
+
 		switch (this) {
 		case WARRIOR:
 			return Assets.WARRIOR;
@@ -205,12 +207,12 @@ public enum HeroClass {
 		case HUNTRESS:
 			return Assets.HUNTRESS;
 		}
-		
+
 		return null;
 	}
-	
+
 	public String[] perks() {
-		
+
 		switch (this) {
 		case WARRIOR:
 			return WAR_PERKS;
@@ -221,18 +223,18 @@ public enum HeroClass {
 		case HUNTRESS:
 			return HUN_PERKS;
 		}
-		
+
 		return null;
 	}
 
-	private static final String CLASS	= "class";
-	
-	public void storeInBundle( Bundle bundle ) {
-		bundle.put( CLASS, toString() );
+	private static final String CLASS = "class";
+
+	public void storeInBundle(Bundle bundle) {
+		bundle.put(CLASS, toString());
 	}
-	
-	public static HeroClass restoreInBundle( Bundle bundle ) {
-		String value = bundle.getString( CLASS );
-		return value.length() > 0 ? valueOf( value ) : ROGUE;
+
+	public static HeroClass restoreInBundle(Bundle bundle) {
+		String value = bundle.getString(CLASS);
+		return value.length() > 0 ? valueOf(value) : ROGUE;
 	}
 }

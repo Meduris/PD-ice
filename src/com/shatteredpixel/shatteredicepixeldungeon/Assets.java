@@ -80,7 +80,8 @@ public class Assets {
 	public static final String BURNING	= "burning_fist.png";
 	public static final String YOG		= "yog.png";
 	public static final String LARVA	= "larva.png";
-	public static final String GHOST	= "ghost.png";
+//	public static final String GHOST	= "ghost.png";
+	public static final String GHOST	= "sadghostChangedColor.png";
 	public static final String MAKER	= "wandmaker.png";
 	public static final String TROLL	= "blacksmith.png";
 	public static final String IMP		= "demon.png";
@@ -91,7 +92,8 @@ public class Assets {
 	public static final String ITEMS	= "items.png";
 	public static final String PLANTS	= "plants.png";
 	
-	public static final String TILES_SEWERS	= "tiles0.png";
+//	public static final String TILES_SEWERS	= "tiles0.png";
+	public static final String TILES_SEWERS = "tile0mod3dStairs.png";
 	public static final String TILES_PRISON	= "tiles1.png";
 	public static final String TILES_CAVES	= "tiles2.png";
 	public static final String TILES_CITY	= "tiles3.png";
