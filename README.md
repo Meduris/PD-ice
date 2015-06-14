@@ -6,10 +6,10 @@ This fork is only for me being able to test everything.
 PD-ice a fork of shattered pixel dungeon...not ready for consumption by anyone...and probably broken. 
 ....
 
-If you want to test the application and help [Nels](https://github.com/ndachel) and me to improve this app, please send me an email to ***REMOVED***
+If you want to test the application and help [Nels](https://github.com/ndachel) and me to improve this app, please send me an email to ***REMOVED***.
 </br>
 
-the original game
+</br>the original game
 
 [Pixel Dungeon](https://github.com/watabou/pixel-dungeon)
 ============
