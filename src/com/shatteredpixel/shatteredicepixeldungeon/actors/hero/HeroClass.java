@@ -153,10 +153,12 @@ public enum HeroClass {
 		Dungeon.quickslot.setSlot(0, wand);
 
 		// TODO should be removed
+		/*
 		PotionOfMindVision mind = new PotionOfMindVision();
 		mind.identify();
 		mind.quantity(20);
 		mind.collect();
+		*/
 
 		new ScrollOfIdentify().setKnown();
 	}
