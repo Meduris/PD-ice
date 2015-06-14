@@ -1,12 +1,13 @@
 Fork of [PD ice](https://github.com/ndachel/PD-ice) on which I will probably test different things
 =============
-You will also find [here](https://github.com/Sarius997/PD-ice/blob/master/Tasks.md) a list of all the issues I recognized and what is already fixed. </br>
+You will also find [here](https://github.com/Sarius997/PD-ice/blob/master/Tasks.md) a list of all the issues I recognized so far and what is already fixed. </br>
 This fork is only for me being able to test everything.
 
 PD-ice a fork of shattered pixel dungeon...not ready for consumption by anyone...and probably broken. 
 ....
 
-</br></br></br>
+If you want to test the application and help [Nels](https://github.com/ndachel) and me to improve this app, please send me an email to ***REMOVED***
+</br>
 
 the original game
 
